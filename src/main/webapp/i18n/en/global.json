@@ -7,7 +7,16 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "job": "Job",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
+      },
+      "dashboard": {
+        "main": "Dashboard",
+        "mostWantedCategories": "Les catégories les plus demandées",
+        "selfVsBorrowed": "Voitures empruntées ou locales",
+        "marketAgencyRepartition": "Répartition du marché entre les agences",
+        "rentingRevenue": "Revenue de location",
+        "workSeason": "Saison de travail"
       },
       "account": {
         "main": "Account",
