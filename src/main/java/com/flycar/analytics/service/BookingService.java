@@ -1,8 +1,12 @@
 package com.flycar.analytics.service;
 
 import com.flycar.analytics.domain.Booking;
-import com.flycar.analytics.domain.Job;
+import com.flycar.analytics.service.dto.BookingsPerAgencyDTO;
+import com.flycar.analytics.service.dto.BookingsVehicleCategoryDTO;
+import com.flycar.analytics.service.dto.RevenueDTO;
 import com.flycar.analytics.service.dto.SelfVSBorrowedDTO;
+
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -36,4 +40,12 @@ public interface BookingService {
     Optional<Booking> findOne(Long id);
 
     SelfVSBorrowedDTO getSelfVsBorrowed();
+
+    List<BookingsVehicleCategoryDTO> getBookingsVehicleCategories();
+
+    List<BookingsPerAgencyDTO> getBookingsPerAgency(String dateMask);
+
+    List<RevenueDTO> getRevenueTrimester(String year);
+
+    List<RevenueDTO> getRevenueMonthly(String year);
 }

@@ -1,0 +1,54 @@
+<div>
+  <h2 id="page-heading" data-cy="JobHeading">
+    <span jhiTranslate="global.menu.dashboard.marketAgencyRepartition"></span>
+    <div class="d-flex justify-content-end">
+      <label jhiTranslate="global.month">Month:</label>
+      <select class="me-2" id="month" name="month" data-cy="month" [ngModel]="selectedMonth" (ngModelChange)="onMonthChange($event)">
+        <option [value]="'01'">01</option>
+        <option [value]="'02'">02</option>
+        <option [value]="'03'">03</option>
+        <option [value]="'04'">04</option>
+        <option [value]="'05'">05</option>
+        <option [value]="'06'">06</option>
+        <option [value]="'07'">07</option>
+        <option [value]="'08'">08</option>
+        <option [value]="'09'">09</option>
+        <option [value]="'10'">10</option>
+        <option [value]="'11'">11</option>
+        <option [value]="'12'">12</option>
+      </select>
+
+
+      <label jhiTranslate="global.year">Year:</label>
+      <select class="me-2" id="year" name="year" data-cy="year" [ngModel]="selectedYear" (ngModelChange)="onYearChange($event)" >
+        <option [value]="'2022'">2022</option>
+        <option [value]="'2023'">2023</option>
+      </select>
+    </div>
+  </h2>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-7">
+        <div style="display: block;">
+          <canvas baseChart
+                  [data]="polarAreaChartData"
+                  [labels]="polarAreaChartLabels"
+                  [legend]="polarAreaLegend"
+                  [chartType]="polarAreaChartType">
+          </canvas>
+        </div>
+      </div>
+      <div class="col-5">
+        <ag-grid-angular
+          style="height: 500px;"
+          class="ag-theme-alpine"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+        >
+        </ag-grid-angular>
+      </div>
+    </div>
+  </div>
+
+</div>

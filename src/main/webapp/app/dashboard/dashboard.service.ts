@@ -12,6 +12,10 @@ export type EntityArrayResponseType = HttpResponse<any[]>;
 @Injectable({ providedIn: 'root' })
 export class DashboardService {
   protected resourceUrl = this.applicationConfigService.getEndpointFor('api/bookings/self_vs_borrowed');
+  protected mostWantedCategoriesResourceUrl = this.applicationConfigService.getEndpointFor('api/bookings/mostWantedCategories');
+  protected bookingsPerAgencyResourceUrl = this.applicationConfigService.getEndpointFor('api/bookings/bookingsPerAgency?dateMask=');
+  protected monthlyRevenueResourceUrl = this.applicationConfigService.getEndpointFor('api/bookings/revenueMonthly?year=');
+  protected trimesterRevenueResourceUrl = this.applicationConfigService.getEndpointFor('api/bookings/revenueTrimester?year=');
   // protected baseUrl = 'localhost:8080/api/';
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
@@ -19,46 +23,21 @@ export class DashboardService {
   getBorrowedVsSelf(): Observable<EntityResponseType> {
     return this.http.get(this.resourceUrl, { observe: 'response' });
   }
-  /*
-  create(job: IJob): Observable<EntityResponseType> {
-    return this.http.post<IJob>(this.resourceUrl, job, { observe: 'response' });
+
+  getMostWantedCategories(): Observable<EntityResponseType> {
+    return this.http.get(this.mostWantedCategoriesResourceUrl, { observe: 'response' });
   }
 
-  update(job: IJob): Observable<EntityResponseType> {
-    return this.http.put<IJob>(`${this.resourceUrl}/${getJobIdentifier(job) as number}`, job, { observe: 'response' });
+  getBookingsPerAgency(mask: string): Observable<EntityResponseType> {
+    return this.http.get(`${this.bookingsPerAgencyResourceUrl}${mask}`, { observe: 'response' });
   }
 
-  partialUpdate(job: IJob): Observable<EntityResponseType> {
-    return this.http.patch<IJob>(`${this.resourceUrl}/${getJobIdentifier(job) as number}`, job, { observe: 'response' });
+  getMonthlyRevenue(year: string): Observable<EntityResponseType> {
+    return this.http.get(`${this.monthlyRevenueResourceUrl}${year}`, { observe: 'response' });
   }
 
-  find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IJob>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  getTrimesterRevenue(year: string): Observable<EntityResponseType> {
+    return this.http.get(`${this.trimesterRevenueResourceUrl}${year}`, { observe: 'response' });
   }
 
-  query(req?: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(req);
-    return this.http.get<IJob[]>(this.resourceUrl, { params: options, observe: 'response' });
-  }
-
-  delete(id: number): Observable<HttpResponse<{}>> {
-    return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
-  }
-
-  addJobToCollectionIfMissing(jobCollection: IJob[], ...jobsToCheck: (IJob | null | undefined)[]): IJob[] {
-    const jobs: IJob[] = jobsToCheck.filter(isPresent);
-    if (jobs.length > 0) {
-      const jobCollectionIdentifiers = jobCollection.map(jobItem => getJobIdentifier(jobItem)!);
-      const jobsToAdd = jobs.filter(jobItem => {
-        const jobIdentifier = getJobIdentifier(jobItem);
-        if (jobIdentifier == null || jobCollectionIdentifiers.includes(jobIdentifier)) {
-          return false;
-        }
-        jobCollectionIdentifiers.push(jobIdentifier);
-        return true;
-      });
-      return [...jobsToAdd, ...jobCollection];
-    }
-    return jobCollection;
-  }*/
 }

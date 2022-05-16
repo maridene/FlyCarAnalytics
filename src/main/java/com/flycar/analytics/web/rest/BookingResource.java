@@ -3,7 +3,12 @@ package com.flycar.analytics.web.rest;
 import com.flycar.analytics.domain.Booking;
 import com.flycar.analytics.repository.BookingRepository;
 import com.flycar.analytics.service.BookingService;
+import com.flycar.analytics.service.dto.BookingsPerAgencyDTO;
+import com.flycar.analytics.service.dto.BookingsVehicleCategoryDTO;
+import com.flycar.analytics.service.dto.RevenueDTO;
 import com.flycar.analytics.service.dto.SelfVSBorrowedDTO;
+
+import java.math.BigInteger;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +19,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.PaginationUtil;
@@ -61,5 +67,37 @@ public class BookingResource {
         SelfVSBorrowedDTO dto = bookingService.getSelfVsBorrowed();
         HttpHeaders headers = new HttpHeaders();
         return ResponseEntity.ok().headers(headers).body(dto);
+    }
+
+    @GetMapping("/bookings/mostWantedCategories")
+    public ResponseEntity<List<BookingsVehicleCategoryDTO>> getMostWantedCategories() {
+        log.debug("REST request to get a page of Bookings");
+        List<BookingsVehicleCategoryDTO> result = bookingService.getBookingsVehicleCategories();
+        HttpHeaders headers = new HttpHeaders();
+        return ResponseEntity.ok().headers(headers).body(result);
+    }
+
+    @GetMapping("/bookings/bookingsPerAgency")
+    public ResponseEntity<List<BookingsPerAgencyDTO>> getBookingsPerAgency(@RequestParam(name = "dateMask") String dateMask) {
+        log.debug("REST request to get a page of Bookings");
+        List<BookingsPerAgencyDTO> result = bookingService.getBookingsPerAgency(dateMask);
+        HttpHeaders headers = new HttpHeaders();
+        return ResponseEntity.ok().headers(headers).body(result);
+    }
+
+    @GetMapping("/bookings/revenueMonthly")
+    public ResponseEntity<List<RevenueDTO>> getRevenueMonthly(@RequestParam(name = "year") String year) {
+        log.debug("REST request to get revenue monthly for given year");
+        List<RevenueDTO> result = bookingService.getRevenueMonthly(year);
+        HttpHeaders headers = new HttpHeaders();
+        return ResponseEntity.ok().headers(headers).body(result);
+    }
+
+    @GetMapping("/bookings/revenueTrimester")
+    public ResponseEntity<List<RevenueDTO>> getRevenueTrimester(@RequestParam(name = "year") String year) {
+        log.debug("REST request to get revenue per trimester for given year");
+        List<RevenueDTO> result = bookingService.getRevenueTrimester(year);
+        HttpHeaders headers = new HttpHeaders();
+        return ResponseEntity.ok().headers(headers).body(result);
     }
 }
