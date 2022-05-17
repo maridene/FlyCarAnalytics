@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { combineLatest } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+import { ChartOptions, ChartType } from 'chart.js';
+import { SingleDataSet, Label, Color, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 
 import { DashboardService } from '../dashboard.service';
 
@@ -25,6 +23,13 @@ export class BorrowedVsSelfComponent implements OnInit {
   public pieChartLegend = true;
   public pieChartPlugins = [];
 
+  public chartColors: Color[] = [
+    {
+      borderColor: ['black', 'black'],
+      backgroundColor: ['rgba(0, 0, 0, 0.75)', 'rgb(245, 186, 33, 0.6)']
+    }
+  ];
+
   constructor(protected dashboardService: DashboardService, protected activatedRoute: ActivatedRoute, protected router: Router) {
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
@@ -38,7 +43,7 @@ export class BorrowedVsSelfComponent implements OnInit {
   ngAfterViewInit(): void {
     this.dashboardService.getBorrowedVsSelf().subscribe({
       next: (res: HttpResponse<any>) => {
-        this.onSuccess(res.body, res.headers);
+        this.onSuccess(res.body);
       },
       error: () => {
         this.isLoading = false;
@@ -47,7 +52,7 @@ export class BorrowedVsSelfComponent implements OnInit {
     });
   }
 
-  protected onSuccess(data: any, headers: HttpHeaders): void {
+  protected onSuccess(data: any): void {
     this.pieChartData[0] = data.borrowed;
     this.pieChartData[1] = data.self;
     this.isLoading = false;

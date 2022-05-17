@@ -1,18 +1,30 @@
 <div>
   <h2 id="page-heading" data-cy="JobHeading">
-    <span jhiTranslate="global.menu.dashboard.mostWantedCategories"></span>
+    <span jhiTranslate="global.menu.dashboard.selfVsBorrowed"></span>
   </h2>
 </div>
 
-<div class="chart-wrapper" *ngIf="!isLoading">
-  <canvas
-    baseChart
-    [data]="pieChartData"
-    [labels]="pieChartLabels"
-    [chartType]="pieChartType"
-    [options]="pieChartOptions"
-    [plugins]="pieChartPlugins"
-    [legend]="pieChartLegend"
-  >
-  </canvas>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="chart-wrapper" *ngIf="!isLoading">
+        <canvas
+          baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins"
+          [legend]="pieChartLegend"
+          [colors]="chartColors"
+          width="100%"
+          height="100%"
+        >
+        </canvas>
+      </div>
+    </div>
+    <div class="col-6">
+      //houni tableau
+    </div>
+  </div>
 </div>
