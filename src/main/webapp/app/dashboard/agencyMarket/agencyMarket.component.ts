@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ColDef } from 'ag-grid-community';
 
 import { ChartType } from 'chart.js';
-import { SingleDataSet, Label} from 'ng2-charts';
+import { SingleDataSet, Label, Color} from 'ng2-charts';
 
 import { DashboardService } from '../dashboard.service';
 
@@ -33,6 +33,13 @@ export class AgencyMarketComponent implements OnInit {
   ];
 
   public rowData: any[] = [];
+
+  public chartColors: Color[] = [
+      //add more colors
+      {
+        backgroundColor: ['rgba(0, 0, 0, 0.75)', 'rgba(245, 186, 33, 0.6)']
+      }
+  ];
 
   constructor(protected dashboardService: DashboardService, protected activatedRoute: ActivatedRoute, protected router: Router) {
     this.selectedYear = '2022';
