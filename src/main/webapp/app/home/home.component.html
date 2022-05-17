@@ -1,78 +1,88 @@
-<div class="row">
-  <div class="col-md-3">
-    <span class="hipster img-fluid rounded"></span>
-  </div>
-
-  <div class="col-md-9">
-    <h1 class="display-4"><span jhiTranslate="home.title">Welcome, Java Hipster!</span> (Flycar Analytics)</h1>
-
-    <p class="lead" jhiTranslate="home.subtitle">This is your homepage</p>
-
-    <div [ngSwitch]="account !== null">
-      <div class="alert alert-success" *ngSwitchCase="true">
-        <span id="home-logged-message" *ngIf="account" jhiTranslate="home.logged.message" [translateValues]="{ username: account.login }"
-          >You are logged in as user "{{ account.login }}".</span
-        >
+<div class="container-fluid">
+  <ngb-carousel>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img src="content/images/slide3.jpg" width="100%" alt="Random first slide">
       </div>
-
-      <div class="alert alert-warning" *ngSwitchCase="false">
-        <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
-        <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a
-        ><span jhiTranslate="global.messages.info.authenticated.suffix"
-          >, you can try the default accounts:<br />- Administrator (login="admin" and password="admin") <br />- User (login="user" and
-          password="user").</span
-        >
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img src="content/images/slide1.jpg" width="100%" alt="Random first slide">
       </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img src="content/images/slide2.jpg" width="100%" alt="Random second slide">
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
 
-      <div class="alert alert-warning" *ngSwitchCase="false">
-        <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>&nbsp;
-        <a class="alert-link" routerLink="account/register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
+
+<div class="container-fluid" style="background-color: #fff">
+  <!-- home page (bottom) 2 boxes -->
+  <div class="boxes_bottom">
+    <div class="container">
+      <div class="row">
+
+        <!-- (1) first box -->
+        <div class="col-md-6 mb-5">
+          <a href="/mostWantedCategories">
+            <div class="box_b1">
+              <h2>Location de camion de qualité professionnelle</h2>
+              <p>
+                Fly Car est doté d’une large gamme d’utilitaires en location : camionnette 3m3, 6m3, camion 20m3 avec hayon, poids lourd, benne basculante, etc. Des utilitaires soigneusement entretenus et contrôlés pour offrir aux particuliers comme aux professionnels des véhicules de qualité sur Paris et sa couronne à prix compétitif.          </p>
+            </div>
+          </a>
+        </div>
+
+        <!-- (2) second box -->
+        <div class="col-md-6 mb-5">
+          <a href="/borrowedVsSelf">
+            <div class="box_b2">
+              <h2>Location utilitaire en aller simple</h2>
+              <p>
+                Découvrez le service de location d’utilitaire en aller simple imaginé par Fly Car à la fois économique et écologique. Cette formule est particulièrement adaptée à la location de camion de déménagement. Pratique, elle s'applique à tous les utilitaires disponibles pour toutes vos destinations en France et en Europe.          </p>
+            </div>
+          </a>
+        </div>
+
+      </div>
+      <div class="row">
+        <!-- (1) first box -->
+        <div class="col-md-6 mb-5">
+          <a href="/agencyMarket">
+            <div class="box_b1">
+              <h2>Location de camion de qualité professionnelle</h2>
+              <p>
+                Fly Car est doté d’une large gamme d’utilitaires en location : camionnette 3m3, 6m3, camion 20m3 avec hayon, poids lourd, benne basculante, etc. Des utilitaires soigneusement entretenus et contrôlés pour offrir aux particuliers comme aux professionnels des véhicules de qualité sur Paris et sa couronne à prix compétitif.          </p>
+            </div>
+          </a>
+        </div>
+
+        <!-- (2) second box -->
+        <div class="col-md-6 mb-5">
+          <a href="/rentingRevenue">
+            <div class="box_b2">
+              <h2>Location utilitaire en aller simple</h2>
+              <p>
+                Découvrez le service de location d’utilitaire en aller simple imaginé par Fly Car à la fois économique et écologique. Cette formule est particulièrement adaptée à la location de camion de déménagement. Pratique, elle s'applique à tous les utilitaires disponibles pour toutes vos destinations en France et en Europe.          </p>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <!-- (1) first box -->
+        <div class="col-md-12 mb-5">
+          <a href="/workSeason">
+            <div class="box_b1">
+              <h2>Location de camion de qualité professionnelle</h2>
+              <p>
+                Fly Car est doté d’une large gamme d’utilitaires en location : camionnette 3m3, 6m3, camion 20m3 avec hayon, poids lourd, benne basculante, etc. Des utilitaires soigneusement entretenus et contrôlés pour offrir aux particuliers comme aux professionnels des véhicules de qualité sur Paris et sa couronne à prix compétitif.          </p>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
-
-    <p jhiTranslate="home.question">If you have any question on JHipster:</p>
-
-    <ul>
-      <li>
-        <a href="https://www.jhipster.tech/" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.homepage"
-          >JHipster homepage</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://stackoverflow.com/tags/jhipster/info"
-          target="_blank"
-          rel="noopener noreferrer"
-          jhiTranslate="home.link.stackoverflow"
-          >JHipster on Stack Overflow</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/jhipster/generator-jhipster/issues?state=open"
-          target="_blank"
-          rel="noopener noreferrer"
-          jhiTranslate="home.link.bugtracker"
-          >JHipster bug tracker</a
-        >
-      </li>
-      <li>
-        <a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.chat"
-          >JHipster public chat room</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.link.follow"
-          >follow @jhipster on Twitter</a
-        >
-      </li>
-    </ul>
-
-    <p>
-      <span jhiTranslate="home.like">If you like JHipster, don't forget to give us a star on</span>
-      <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener noreferrer" jhiTranslate="home.github"
-        >GitHub</a
-      >!
-    </p>
   </div>
 </div>
