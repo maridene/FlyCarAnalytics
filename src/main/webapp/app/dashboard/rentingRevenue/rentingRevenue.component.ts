@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { Label, Color } from 'ng2-charts';
 
 import { DashboardService } from '../dashboard.service';
 
@@ -29,6 +29,17 @@ export class RentingRevenueComponent implements OnInit {
   public barChartPlugins = [];
 
   public barChartData: ChartDataSets[] = [];
+
+  public chartColors: Color[] = [
+      {
+        borderColor: 'black',
+        backgroundColor: 'rgb(245, 186, 33, 0.6)',
+      },
+      {
+              borderColor: 'black',
+              backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            }
+    ];
 
 
   constructor(protected dashboardService: DashboardService, protected activatedRoute: ActivatedRoute, protected router: Router) {
