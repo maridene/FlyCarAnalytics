@@ -1,13 +1,25 @@
 <div>
   <h2 id="page-heading" data-cy="JobHeading">
     <span jhiTranslate="global.menu.dashboard.workSeason"></span>
-    <div class="d-flex justify-content-end">
-
-    </div>
   </h2>
 
-  <div class="container-fluid">
-
+  <div class="d-flex justify-content-end">
+    <label jhiTranslate="global.year">Year:</label>
+    <select class="me-2" id="year" name="year" data-cy="year" [ngModel]="selectedYear" (ngModelChange)="onYearChange($event)" >
+      <option [value]="'2022'">2022</option>
+      <option [value]="'2023'">2023</option>
+    </select>
   </div>
 
+  <div class="chart-wrapper">
+    <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            chartType="line"
+            [plugins]="lineChartPlugins">
+    </canvas>
+  </div>
 </div>

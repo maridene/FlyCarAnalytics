@@ -100,4 +100,12 @@ public class BookingResource {
         HttpHeaders headers = new HttpHeaders();
         return ResponseEntity.ok().headers(headers).body(result);
     }
+
+    @GetMapping("/bookings/bookingsMonthly")
+    public ResponseEntity<List<BigInteger>> getBookingsMonthly(@RequestParam(name = "year") String year) {
+        log.debug("REST request to get bookings monthly for given year");
+        List<BigInteger> result = bookingService.getBookingsMonthly(year);
+        HttpHeaders headers = new HttpHeaders();
+        return ResponseEntity.ok().headers(headers).body(result);
+    }
 }

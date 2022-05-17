@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.IntStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -138,5 +137,16 @@ public class BookingServiceImpl implements BookingService {
             monthly.get(9).getTotalRevenue() + monthly.get(10).getTotalRevenue() + monthly.get(11).getTotalRevenue()));
 
         return trimester;
+    }
+
+    @Override
+    public List<BigInteger> getBookingsMonthly(String year) {
+        String[] months = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+        return Arrays.stream(months)
+            .map(month -> {
+                List<Object[]> bookings = bookingRepository.getBookingsMonthly(year, "" + month);
+                return (BigInteger) bookings.get(0)[0];
+            })
+            .collect(toList());
     }
 }

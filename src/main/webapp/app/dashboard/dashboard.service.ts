@@ -16,6 +16,7 @@ export class DashboardService {
   protected bookingsPerAgencyResourceUrl = this.applicationConfigService.getEndpointFor('api/bookings/bookingsPerAgency?dateMask=');
   protected monthlyRevenueResourceUrl = this.applicationConfigService.getEndpointFor('api/bookings/revenueMonthly?year=');
   protected trimesterRevenueResourceUrl = this.applicationConfigService.getEndpointFor('api/bookings/revenueTrimester?year=');
+  protected monthlyBookingsResourceUrl = this.applicationConfigService.getEndpointFor('api/bookings/bookingsMonthly?year=');
   // protected baseUrl = 'localhost:8080/api/';
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
@@ -38,6 +39,10 @@ export class DashboardService {
 
   getTrimesterRevenue(year: string): Observable<EntityResponseType> {
     return this.http.get(`${this.trimesterRevenueResourceUrl}${year}`, { observe: 'response' });
+  }
+
+  getMonthlyBookings(year: string): Observable<EntityResponseType> {
+    return this.http.get(`${this.monthlyBookingsResourceUrl}${year}`, { observe: 'response' });
   }
 
 }

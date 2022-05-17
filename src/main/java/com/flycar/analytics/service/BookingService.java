@@ -48,4 +48,6 @@ public interface BookingService {
     List<RevenueDTO> getRevenueTrimester(String year);
 
     List<RevenueDTO> getRevenueMonthly(String year);
+
+    List<BigInteger> getBookingsMonthly(String year);
 }
